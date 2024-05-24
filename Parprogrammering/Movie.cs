@@ -8,10 +8,10 @@ namespace Parprogrammering
 {
     internal class Movie
     {
-        public string Title;
-        public string Description;
-        public string Director;
-        public List<string> Actors;
+        private string Title;
+        private string Description;
+        private string Director;
+        private List<string> Actors;
 
         public Movie(string title, string description, string director, List<string> actors)
         {
@@ -20,6 +20,23 @@ namespace Parprogrammering
             Director = director;
             Actors = actors;
         }
+
+        public string ShowTitle()
+        {
+            return Title;
+        }
+        public string ShowDirector()
+        {
+            return Director;
+        }
+        public string ShowDesc()
+        {
+            return Description;
+        }
+
+        public List<string> ShowActors()
+        {
+            return Actors;
+        }
     }
-       
 }

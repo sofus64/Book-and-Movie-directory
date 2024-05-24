@@ -8,15 +8,28 @@ namespace Parprogrammering
 {
     internal class Book
     {
-        public string Title;
-        public string Author;
-        public string Description;
+        private string Title;
+        private string Author;
+        private string Description;
 
         public Book(string title, string author, string description)
         {
             Title = title;
             Author = author;
             Description = description;
+        }
+
+        public string ShowTitle()
+        {
+            return Title;
+        }
+        public string ShowAuthor()
+        {
+            return Author;
+        }
+        public string ShowDesc()
+        {
+            return Description;
         }
     }
 }
