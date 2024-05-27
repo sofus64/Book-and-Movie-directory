@@ -8,8 +8,8 @@ namespace Parprogrammering
 {
     internal class Start
     {
-        public List<Movie> Movies = new List<Movie>();
-        public List<Book> Books = new List<Book>();
+        public List<Movie> Movies = new();
+        public List<Book> Books = new();
         public void Run()
         {
             while (true)
@@ -39,7 +39,7 @@ namespace Parprogrammering
             Console.WriteLine("1. Movies");
             Console.WriteLine("2. Books");
 
-            string userInput = Console.ReadLine();
+            var userInput = Console.ReadLine();
 
             if (userInput == "1")
             {
@@ -51,42 +51,64 @@ namespace Parprogrammering
             }
         }
 
-        public void ListBooks()
+        public void NoEntries(string mediaType)
         {
             Console.Clear();
-            Console.WriteLine("Which book would you like to see?");
-            for (int i = 0; i < Books.Count; i++)
+            Console.WriteLine($"There are no {mediaType} in your directory yet!");
+            Console.Write("Press any key to continue..");
+            Console.ReadKey();
+        }
+
+        public void ListBooks()
+        {
+            if (Books.Count > 0)
             {
-                var book = Books[i];
-                Console.WriteLine($"{i + 1}. {book.ShowTitle()}");
+                Console.Clear();
+                Console.WriteLine("Which book would you like to see?");
+                for (int i = 0; i < Books.Count; i++)
+                {
+                    var book = Books[i];
+                    Console.WriteLine($"{i + 1}. {book.ShowTitle()}");
+                }
+
+                var userInput = Convert.ToInt32(Console.ReadLine());
+
+
+                if (userInput <= Books.Count)
+                {
+                    DisplayBook(Books[userInput - 1]);
+                }
             }
-
-            int userInput = Convert.ToInt32(Console.ReadLine());
-
-
-            if (userInput <= Books.Count)
+            else
             {
-                DisplayBook(Books[userInput - 1]);
+                NoEntries("books");
             }
-
         }
 
         public void ListMovies()
         {
-            Console.Clear();
-            Console.WriteLine("Which movie would you like to see?");
-            for (int i = 0; i < Movies.Count; i++)
+            if (Movies.Count > 0)
             {
-                var movie = Movies[i];
-                Console.WriteLine($"{i + 1}. {movie.ShowTitle()}");
+
+                Console.Clear();
+                Console.WriteLine("Which movie would you like to see?");
+                for (int i = 0; i < Movies.Count; i++)
+                {
+                    var movie = Movies[i];
+                    Console.WriteLine($"{i + 1}. {movie.ShowTitle()}");
+                }
+
+                var userInput = Convert.ToInt32(Console.ReadLine());
+
+
+                if (userInput <= Movies.Count)
+                {
+                    DisplayMovie(Movies[userInput - 1]);
+                }
             }
-
-            int userInput = Convert.ToInt32(Console.ReadLine());
-
-
-            if (userInput <= Movies.Count)
+            else
             {
-                DisplayMovie(Movies[userInput - 1]);
+                NoEntries("movies");
             }
         }
 
@@ -98,7 +120,7 @@ namespace Parprogrammering
             Console.WriteLine("2. Book");
 
 
-            string userInput = Console.ReadLine();
+            var userInput = Console.ReadLine();
 
             if (userInput == "1")
             {
@@ -117,23 +139,22 @@ namespace Parprogrammering
         {
             Console.Clear();
             Console.WriteLine("What's the title of your movie?");
-            string title = Console.ReadLine();
+            var title = Console.ReadLine();
             Console.Clear();
             Console.WriteLine("Please enter a description of your movie.");
-            string description = Console.ReadLine();
+            var description = Console.ReadLine();
             Console.Clear();
             Console.WriteLine("Who is the director of your movie?");
-            string director = Console.ReadLine();
+            var director = Console.ReadLine();
             Console.Clear();
 
-            bool actorState = true;
-            string actor = "";
+            var actorState = true;
             List<string> actors = new List<string>();
             while (actorState)
             {
                 Console.Clear();
                 Console.WriteLine("Add an actor to your movie, or press 'c' to continue");
-                actor = Console.ReadLine();
+                var actor = Console.ReadLine();
 
                 if (actor == "c")
                 {
